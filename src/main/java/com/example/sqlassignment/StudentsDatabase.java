@@ -2,10 +2,7 @@ package com.example.sqlassignment;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-<<<<<<< HEAD
 import java.sql.PreparedStatement;
-=======
->>>>>>> 78abf7d (Initial commit)
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,20 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-<<<<<<< HEAD
 enum myGender { F, M, U}
 enum myGrade { A,B,C,D,F,W }
 public class StudentsDatabase implements StudentsDatabaseInterface, TableInterface{
     String url;
-=======
-enum myGender { F, M, U};
-enum mySemester {FALL, WINTER, SUMMER, SPRING};
-enum myGrade { A,B,C,D,F,W };
-public class StudentsDatabase implements StudentsDatabaseInterface, TableInterface{
-    String url;
-    //String dbName = "Students";
-
->>>>>>> 78abf7d (Initial commit)
     String username;
     String password;
     Connection connection;
@@ -83,7 +70,6 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
 
         return mapAggregateGrades;
     }
-<<<<<<< HEAD
     public void updateCourseInstructor (Connection connection, String courseId, String sectionNumber, String nameInstructor) throws SQLException {
         String updateQuery = StudentsDatabaseInterface.upDateCourseInstructor(courseId, sectionNumber, nameInstructor);
         PreparedStatement pStatement = connection.prepareStatement(updateQuery);
@@ -98,8 +84,6 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
         }
 
     }
-=======
->>>>>>> 78abf7d (Initial commit)
 
     public class Schedule {
         String createTable;
@@ -176,7 +160,6 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
         public Classes(String createTable, String nameTable) throws SQLException {
             this.createTable = createTable;
             this.nameTable = nameTable;
-<<<<<<< HEAD
             // Create Table
             TableInterface.dropTable(connection, nameTable);
             TableInterface.createTable(connection, createTable,nameTable);
@@ -188,17 +171,6 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
                     "courseId = \"22100 R\" AND empId = \'" + ID + "\';";
             PreparedStatement pStatement = connection.prepareStatement(sql);
             pStatement.executeUpdate();
-=======
-           // this.populateTable = populateTable;
-
-
-            // Create Table
-            TableInterface.dropTable(connection, nameTable);
-            TableInterface.createTable(connection, createTable,nameTable);
-
-            // Populate Table
-            //TableInterface.populateTable(connection, populateTable,nameTable);
->>>>>>> 78abf7d (Initial commit)
         }
     }
     public class AggregateGrades{
@@ -207,18 +179,11 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
 
         String nameTable;
 
-<<<<<<< HEAD
 
         public AggregateGrades(String createTable, String nameTable) throws SQLException {
             this.createTable = createTable;
             this.nameTable = nameTable;
             this.populateTable = "INSERT INTO  " + nameTable + " " + StudentsDatabaseInterface.aggregateGradesAllClasses;
-=======
-        public AggregateGrades(String createTable, String nameTable) throws SQLException {
-            this.createTable = createTable;
-            this.nameTable = nameTable;
-            this.populateTable = "INSERT INTO  " + nameTable + " " + StudentsDatabaseInterface.aggregateGrades221;
->>>>>>> 78abf7d (Initial commit)
 
             // Create Table
             TableInterface.dropTable(connection, nameTable);
@@ -227,7 +192,6 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
             // Populate Table
             TableInterface.populateTable(connection, populateTable, nameTable);
         }
-<<<<<<< HEAD
         static void updateAggregateGrades(Connection connection, String nameTable, String grade, String num_students) throws SQLException {
             String updateQuery = "UPDATE " + nameTable +
                     " SET num_students = '" + num_students + "'" +
@@ -243,8 +207,6 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
                 System.out.println(e);
             }
         }
-=======
->>>>>>> 78abf7d (Initial commit)
 
     }
 }

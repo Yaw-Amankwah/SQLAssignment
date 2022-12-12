@@ -84,7 +84,6 @@ public interface TableInterface {
             System.out.println(e);
         }
     }
-<<<<<<< HEAD
     static void updateTable (Connection connection, String nameTable, String setField, String to, String whereField, String from) throws SQLException {
         String sql = "UPDATE " + nameTable +
                 " SET " + setField + " = " + to +
@@ -100,6 +99,4 @@ public interface TableInterface {
         }
 
     }
-=======
->>>>>>> 78abf7d (Initial commit)
 }
