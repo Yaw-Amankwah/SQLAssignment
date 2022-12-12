@@ -2,7 +2,11 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
+<<<<<<< HEAD
     <value-preview-text-wrapping value="false" />
+=======
+    <value-preview-text-wrapping value="true" />
+>>>>>>> 78abf7d (Initial commit)
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -15,16 +19,22 @@
     <connection id="83cf0add-9955-4370-9bcd-545a86d8327d">
       <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
+<<<<<<< HEAD
     <connection id="1341bfaa-104c-4b38-88a8-285c9a175e0c">
       <console name="Connection 1" type="STANDARD" schema="" session="Main" />
     </connection>
+=======
+>>>>>>> 78abf7d (Initial commit)
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+<<<<<<< HEAD
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="1341bfaa-104c-4b38-88a8-285c9a175e0c" dataset="Students.AggregateGradesAllClasses" active-filter-id="EMPTY_FILTER" />
   </component>
+=======
+>>>>>>> 78abf7d (Initial commit)
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
   </component>
@@ -118,6 +128,7 @@
           <object-name-filters />
         </object-filters>
       </connection>
+<<<<<<< HEAD
       <connection id="1341bfaa-104c-4b38-88a8-285c9a175e0c" active="true" signed="true">
         <database>
           <name value="Connection 1" />
@@ -202,6 +213,8 @@
           <object-name-filters />
         </object-filters>
       </connection>
+=======
+>>>>>>> 78abf7d (Initial commit)
     </connections>
     <browser-settings>
       <general>

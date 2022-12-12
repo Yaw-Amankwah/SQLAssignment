@@ -180,6 +180,7 @@ public class HelloApplication extends Application {
                             myGender.values()[new Random().nextInt(myGender.values().length)]));
                 }
 
+<<<<<<< HEAD
                 //PRINT STUDENT LIST
 
                 System.out.println("\nPRINTING OUT STUDENT LIST: num_students = " + numStudents);
@@ -190,6 +191,8 @@ public class HelloApplication extends Application {
                             " | " + student.getEmail() + "  | " + student.getGender());
                 }
 
+=======
+>>>>>>> 78abf7d (Initial commit)
                 //Create populate Table Students.Students
                 nameTable = "Students.Students";
                 StringBuilder sqlStudentsQuery = new StringBuilder();
@@ -221,6 +224,10 @@ public class HelloApplication extends Application {
                     String sqlString =
                             "SELECT DISTINCT courseId, sectionNumber,year,semester " +
                                     "FROM Students.Schedule " +
+<<<<<<< HEAD
+=======
+                                    //"WHERE program = \'Undergraduate\' " +
+>>>>>>> 78abf7d (Initial commit)
                                     "ORDER BY RAND() " +
                                     "LIMIT " + numClassesString;
                     PreparedStatement pStatement = connection.prepareStatement(sqlString);
@@ -301,6 +308,7 @@ public class HelloApplication extends Application {
                     System.out.println(entry.getKey() + ": " + entry.getValue().toString());
                 }
                 AggregateGrades = AggregateGradesCSC22100;
+<<<<<<< HEAD
 
                 //FIRST UPDATE...Students.Students
                 System.out.println("\nBEFORE STUDENTS UPDATE");
@@ -395,6 +403,8 @@ public class HelloApplication extends Application {
             }
 
 
+=======
+>>>>>>> 78abf7d (Initial commit)
                 launch();
         }
 

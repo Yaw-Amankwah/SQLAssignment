@@ -36,6 +36,7 @@ public interface StudentsDatabaseInterface {
             "FROM Students.Classes " +
             "WHERE courseId = \"22100 R\" OR courseId = \"22100 F\" OR courseId = \"22100 P\" " +
             "GROUP BY grade";
+<<<<<<< HEAD
     String aggregateGradesAllClasses = "SELECT grade, count(grade) " +
             "FROM Students.Classes " +
             "GROUP BY grade";
@@ -43,13 +44,24 @@ public interface StudentsDatabaseInterface {
 
     static String upDateCourseInstructor (String courseId, String sectionNumber, String nameInstructor) {
      return  "UPDATE Students.Schedule" +
+=======
+
+    static String upDateCourseInstructor (String courseId, String sectionNumber, String nameInstructor) {
+     return  "UPDATE Schedule" +
+>>>>>>> 78abf7d (Initial commit)
              " SET instructor = " + nameInstructor +
              " WHERE courseId = " + courseId + " AND + " + "sectionNumber = " + sectionNumber;
     }
     static String updateInstructor (String nameInstructor, String nameNewInstructor) {
+<<<<<<< HEAD
      return "UPDATE Students.Schedule " +
              " SET instructor = " + nameNewInstructor +
              " WHERE instructor = " + nameInstructor;
+=======
+     return "UPDATE Schedule " +
+             " SET instructor = " + nameInstructor +
+             " WHERE instructor = " + nameNewInstructor; //SHOULDN'T THE TWO ABOVE BE SWITCHED??
+>>>>>>> 78abf7d (Initial commit)
     }
 
     static String insertTableCourses (String nameToTable, String nameFromTable) {
