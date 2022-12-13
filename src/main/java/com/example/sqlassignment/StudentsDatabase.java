@@ -10,13 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-enum myGender { F, M, U};
-enum mySemester {FALL, WINTER, SUMMER, SPRING};
-enum myGrade { A,B,C,D,F,W };
+enum myGender { F, M, U}
+enum myGrade { A,B,C,D,F,W }
 public class StudentsDatabase implements StudentsDatabaseInterface, TableInterface{
     String url;
-    //String dbName = "Students";
-
     String username;
     String password;
     Connection connection;
@@ -182,10 +179,11 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
 
         String nameTable;
 
+
         public AggregateGrades(String createTable, String nameTable) throws SQLException {
             this.createTable = createTable;
             this.nameTable = nameTable;
-            this.populateTable = "INSERT INTO  " + nameTable + " " + StudentsDatabaseInterface.aggregateGrades221;
+            this.populateTable = "INSERT INTO  " + nameTable + " " + StudentsDatabaseInterface.aggregateGradesAllClasses;
 
             // Create Table
             TableInterface.dropTable(connection, nameTable);
@@ -193,6 +191,21 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
 
             // Populate Table
             TableInterface.populateTable(connection, populateTable, nameTable);
+        }
+        static void updateAggregateGrades(Connection connection, String nameTable, String grade, String num_students) throws SQLException {
+            String updateQuery = "UPDATE " + nameTable +
+                    " SET num_students = '" + num_students + "'" +
+                    " WHERE grade = '" + grade + "';";
+            PreparedStatement pStatement = connection.prepareStatement(updateQuery);
+            try {
+                pStatement.executeUpdate();
+                System.out.println("\nUpdate successful for AggregateGrades:  " + nameTable + ".");
+
+            }
+            catch (SQLException e) {
+                System.out.println("\nError in update Aggregate grades; " + nameTable);
+                System.out.println(e);
+            }
         }
 
     }

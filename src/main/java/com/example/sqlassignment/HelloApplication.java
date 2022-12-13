@@ -294,7 +294,7 @@ public class HelloApplication extends Application {
                 AggregateGrades = AggregateGradesCSC22100;
 
                 //FIRST UPDATE...Students.Students
-                System.out.println("\nBEFORE");
+                System.out.println("\nBEFORE STUDENTS UPDATE");
                 String checkStudent = "SELECT empId, firstName, lastName FROM Students.Students WHERE firstName = 'David';";
                 PreparedStatement pStatement = connection.prepareStatement(checkStudent);
                 ResultSet RS = pStatement.executeQuery();
@@ -304,7 +304,7 @@ public class HelloApplication extends Application {
                 System.out.println("\nReplacing David with Jay in Students.Students");
                 TableInterface.updateTable(connection, "Students.Students", "firstName", "\'Jay\'", "firstName", "\'David\'" );
 
-                System.out.println("\nAFTER");
+                System.out.println("\nAFTER STUDENTS UPDATE");
 
                 String checkStudent3 = "SELECT empId, firstName, lastName FROM Students.Students WHERE firstName = 'Jay';";
                 PreparedStatement pStatement3 = connection.prepareStatement(checkStudent3);
@@ -314,7 +314,7 @@ public class HelloApplication extends Application {
                 }
 
                 //SECOND UPDATE...Students.Courses
-                System.out.println("\nBEFORE");
+                System.out.println("\nBEFORE COURSES UPDATE");
                 String checkCourses = "SELECT courseId, title, department, program " +
                         "FROM Students.Courses " +
                         "WHERE courseId = \'22100 R\';";
@@ -332,7 +332,7 @@ public class HelloApplication extends Application {
                 TableInterface.updateTable(connection, "Students.Courses", "courseId", "\'MATH22100\'", "courseId", "\'22100 R\'" );
 
 
-                System.out.println("\nAFTER");
+                System.out.println("\nAFTER COURSES UPDATE");
 
                 String checkCourses2 = "SELECT courseId, title, department, program " +
                         "FROM Students.Courses " +
@@ -362,11 +362,28 @@ public class HelloApplication extends Application {
                 StudentsDatabase.Classes.updateGrade(connection, ID);
 
                 //FOURTH UPDATE...Students.AggregateGrades
+                System.out.println("\nBEFORE AGGREGATE GRADES UPDATE");
+                String checkAggregate = "SELECT grade, num_students FROM Students.AggregateGradesAllClasses;";
+                PreparedStatement checkAggregatePStatement = connection.prepareStatement(checkAggregate);
+                ResultSet checkAggregateRS = checkAggregatePStatement.executeQuery();
+                while (checkAggregateRS.next()) {
+                    System.out.println(checkAggregateRS.getString(1) + ": " +
+                    checkAggregateRS.getString(2));
+                 }
+                String grade = myGrade.A.toString();
+                String num_students = String.valueOf(200);
+                System.out.println("\nReplacing number of students with " + grade + " grade for All Classes");
+                StudentsDatabase.AggregateGrades.updateAggregateGrades(connection,"Students.AggregateGradesAllClasses",grade,num_students);
 
+                System.out.println("\nAFTER AGGREGATE GRADES UPDATE");
 
-
-
-
+                String checkAggregate2 = "SELECT grade, num_students FROM Students.AggregateGradesAllClasses;";
+                PreparedStatement checkAggregatePStatement2 = connection.prepareStatement(checkAggregate2);
+                ResultSet checkAggregateRS2 = checkAggregatePStatement2.executeQuery();
+                 while (checkAggregateRS2.next()) {
+                    System.out.println(checkAggregateRS2.getString(1) + ": " +
+                    checkAggregateRS2.getString(2));
+            }
 
 
                 launch();

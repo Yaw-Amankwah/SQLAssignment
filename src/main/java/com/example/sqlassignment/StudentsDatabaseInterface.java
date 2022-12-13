@@ -36,6 +36,10 @@ public interface StudentsDatabaseInterface {
             "FROM Students.Classes " +
             "WHERE courseId = \"22100 R\" OR courseId = \"22100 F\" OR courseId = \"22100 P\" " +
             "GROUP BY grade";
+    String aggregateGradesAllClasses = "SELECT grade, count(grade) " +
+            "FROM Students.Classes " +
+            "GROUP BY grade";
+
 
     static String upDateCourseInstructor (String courseId, String sectionNumber, String nameInstructor) {
      return  "UPDATE Students.Schedule" +
