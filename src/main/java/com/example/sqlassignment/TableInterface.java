@@ -84,4 +84,19 @@ public interface TableInterface {
             System.out.println(e);
         }
     }
+    static void updateTable (Connection connection, String nameTable, String setField, String to, String whereField, String from) throws SQLException {
+        String sql = "UPDATE " + nameTable +
+                " SET " + setField + " = " + to +
+                " WHERE " + whereField + " = " + from;
+        PreparedStatement pStatement = connection.prepareStatement(sql);
+        try {
+            pStatement.executeUpdate();
+            System.out.println("\nUpdate successful: " + nameTable);
+        }
+        catch (SQLException e) {
+            System.out.println("\nError in updateTable " + nameTable);
+            System.out.println(e);
+        }
+
+    }
 }

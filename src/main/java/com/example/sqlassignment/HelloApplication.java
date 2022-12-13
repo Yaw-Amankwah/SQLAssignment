@@ -292,6 +292,83 @@ public class HelloApplication extends Application {
                     System.out.println(entry.getKey() + ": " + entry.getValue().toString());
                 }
                 AggregateGrades = AggregateGradesCSC22100;
+
+                //FIRST UPDATE...Students.Students
+                System.out.println("\nBEFORE");
+                String checkStudent = "SELECT empId, firstName, lastName FROM Students.Students WHERE firstName = 'David';";
+                PreparedStatement pStatement = connection.prepareStatement(checkStudent);
+                ResultSet RS = pStatement.executeQuery();
+                while (RS.next()) {
+                    System.out.println(RS.getString(1) + ": " + RS.getString(2) + ", " + RS.getString(3));
+                }
+                System.out.println("\nReplacing David with Jay in Students.Students");
+                TableInterface.updateTable(connection, "Students.Students", "firstName", "\'Jay\'", "firstName", "\'David\'" );
+
+                System.out.println("\nAFTER");
+
+                String checkStudent3 = "SELECT empId, firstName, lastName FROM Students.Students WHERE firstName = 'Jay';";
+                PreparedStatement pStatement3 = connection.prepareStatement(checkStudent3);
+                ResultSet RS3 = pStatement3.executeQuery();
+                while (RS3.next()) {
+                    System.out.println(RS3.getString(1) + ": " + RS3.getString(2) + ", " + RS3.getString(3));
+                }
+
+                //SECOND UPDATE...Students.Courses
+                System.out.println("\nBEFORE");
+                String checkCourses = "SELECT courseId, title, department, program " +
+                        "FROM Students.Courses " +
+                        "WHERE courseId = \'22100 R\';";
+                PreparedStatement checkCoursesPStatement = connection.prepareStatement(checkCourses);
+                ResultSet checkCoursesRS = checkCoursesPStatement.executeQuery();
+                while (checkCoursesRS.next()) {
+                    System.out.println(checkCoursesRS.getString(1) + ": " +
+                            checkCoursesRS.getString(2) + ", " +
+                            checkCoursesRS.getString(3) + ", "+
+                            checkCoursesRS.getString(4));
+                }
+                System.out.println("\nReplacing CSC22100 with MATH22100 in Students.Courses");
+                TableInterface.updateTable(connection, "Students.Courses", "title", "\'MATHFORNERDS\'", "courseId", "\'22100 R\'" );
+                TableInterface.updateTable(connection, "Students.Courses", "department", "\'Mathematics\'", "courseId", "\'22100 R\'" );
+                TableInterface.updateTable(connection, "Students.Courses", "courseId", "\'MATH22100\'", "courseId", "\'22100 R\'" );
+
+
+                System.out.println("\nAFTER");
+
+                String checkCourses2 = "SELECT courseId, title, department, program " +
+                        "FROM Students.Courses " +
+                        "WHERE courseId = \'MATH22100\';";
+                PreparedStatement checkCoursesPStatement2 = connection.prepareStatement(checkCourses2);
+                ResultSet checkCoursesRS2 = checkCoursesPStatement2.executeQuery();
+                while (checkCoursesRS2.next()) {
+                    System.out.println(checkCoursesRS2.getString(1) + ", " +
+                            checkCoursesRS2.getString(2) + ", " +
+                            checkCoursesRS2.getString(3) + ", " +
+                            checkCoursesRS2.getString(4));
+                }
+
+                //THIRD UPDATE...Students.Classes
+
+                String ID = null;
+                for (Student student: studentList) {
+                    for (int i = 0; i < numClasses; i++) {
+                        if (((student.getStudentClasses().get(i).equals("22100 R")) ||
+                        (student.getStudentClasses().get(i).equals("22100 F")) ||
+                                (student.getStudentClasses().get(i).equals("22100 P"))) && (student.getStudentGrades().get(i).equals("F"))){
+                            ID = student.getEmpId();
+                            break;
+                        }
+                    }
+                }
+                StudentsDatabase.Classes.updateGrade(connection, ID);
+
+                //FOURTH UPDATE...Students.AggregateGrades
+
+
+
+
+
+
+
                 launch();
         }
 

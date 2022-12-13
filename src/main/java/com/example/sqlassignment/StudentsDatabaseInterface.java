@@ -38,14 +38,14 @@ public interface StudentsDatabaseInterface {
             "GROUP BY grade";
 
     static String upDateCourseInstructor (String courseId, String sectionNumber, String nameInstructor) {
-     return  "UPDATE Schedule" +
+     return  "UPDATE Students.Schedule" +
              " SET instructor = " + nameInstructor +
              " WHERE courseId = " + courseId + " AND + " + "sectionNumber = " + sectionNumber;
     }
     static String updateInstructor (String nameInstructor, String nameNewInstructor) {
-     return "UPDATE Schedule " +
-             " SET instructor = " + nameInstructor +
-             " WHERE instructor = " + nameNewInstructor; //SHOULDN'T THE TWO ABOVE BE SWITCHED??
+     return "UPDATE Students.Schedule " +
+             " SET instructor = " + nameNewInstructor +
+             " WHERE instructor = " + nameInstructor;
     }
 
     static String insertTableCourses (String nameToTable, String nameFromTable) {

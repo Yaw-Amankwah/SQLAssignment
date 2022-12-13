@@ -2,6 +2,7 @@ package com.example.sqlassignment;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -71,6 +72,20 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
         catch (SQLException e) {System.out.println(e);}
 
         return mapAggregateGrades;
+    }
+    public void updateCourseInstructor (Connection connection, String courseId, String sectionNumber, String nameInstructor) throws SQLException {
+        String updateQuery = StudentsDatabaseInterface.upDateCourseInstructor(courseId, sectionNumber, nameInstructor);
+        PreparedStatement pStatement = connection.prepareStatement(updateQuery);
+        try {
+            pStatement.executeUpdate();
+            System.out.println("\nUpdate successful for courseId " + courseId + ".");
+            System.out.println(nameInstructor + "is your new instructor");
+        }
+        catch (SQLException e) {
+            System.out.println("\nError in update course Instructor");
+            System.out.println(e);
+        }
+
     }
 
     public class Schedule {
@@ -148,15 +163,17 @@ public class StudentsDatabase implements StudentsDatabaseInterface, TableInterfa
         public Classes(String createTable, String nameTable) throws SQLException {
             this.createTable = createTable;
             this.nameTable = nameTable;
-           // this.populateTable = populateTable;
-
-
             // Create Table
             TableInterface.dropTable(connection, nameTable);
             TableInterface.createTable(connection, createTable,nameTable);
-
-            // Populate Table
-            //TableInterface.populateTable(connection, populateTable,nameTable);
+        }
+        static void updateGrade(Connection connection, String ID) throws SQLException {
+            String sql = "UPDATE Students.Classes SET grade = \"A\" " +
+                    "WHERE courseId = \"22100 R\" AND empId = \'" + ID + "\' OR " +
+                    "courseId = \"22100 R\" AND empId = \'" + ID + "\' OR " +
+                    "courseId = \"22100 R\" AND empId = \'" + ID + "\';";
+            PreparedStatement pStatement = connection.prepareStatement(sql);
+            pStatement.executeUpdate();
         }
     }
     public class AggregateGrades{
